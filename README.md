@@ -1,1 +1,1 @@
-# Simpil-Lerning-CLI
+# Simple-Lerning-CLI
