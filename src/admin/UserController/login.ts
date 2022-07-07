@@ -24,16 +24,20 @@ export async function Login_admin() {
 	console.log();
 	try {
 		const user = await axios.post(baseUrl + '/users/login', { email, password });
-		if (email !== user.data.email && role !== 'admin') {
-			console.log(chalk.red('email or password incorrect'));
-			console.log();
-			await Login_admin();
+
+		if (!user.data.token) {
+			console.log(chalk.red('email  incorrect'));
 		}
+		console.log();
+		// await Login_admin();
+
 		console.log();
 		const newToken = user.data.token;
 		globalData.token = newToken;
 	} catch (error: any) {
-		console.log(error?.response?.data);
-		process.exit(0);
+		console.log(chalk.red(' password incorrect'));
+		//console.log(error?.response?.data);
+		console.log();
+		await Login_admin();
 	}
 }
